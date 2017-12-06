@@ -79,28 +79,35 @@ String UseID = "";
 void MQTT_connect();
 void pub_mqtt(String k, String v);
 
-void setup() {
+String CreateHWID() {
   uint8_t MAC_array[6];
-  char ID[6] = "";
+  char ID[6] = "";  
+  
+  WiFi.macAddress(MAC_array);
+  for (int i = 3; i < sizeof(MAC_array); ++i) {
+    sprintf(ID, "%s%02x", ID, MAC_array[i]);
+  }
+  return String(String(ID));
+}
 
+void setup() {
   pinMode(0, OUTPUT);
   pinMode(2, OUTPUT);
 
   // Client Only
   WiFi.mode(WIFI_STA);
 
-  WiFi.macAddress(MAC_array);
-  for (int i = 3; i < sizeof(MAC_array); ++i) {
-    sprintf(ID, "%s%02x", ID, MAC_array[i]);
-  }
-  UseID = String(String(ID));
+  // HardwareID
+  UseID = CreateHWID();
 
+  // Connect
   WiFi.begin ( S_WIFI_SSID, S_WIFI_PASSWORD );
 
   while ( WiFi.status() != WL_CONNECTED ) {
     delay ( 500 ); // Keep trying
   }
 
+  // BME Connect
   if (!bme.begin()) {
     MQTT_connect();
     pub_mqtt("ERROR", "BMP Not Found");

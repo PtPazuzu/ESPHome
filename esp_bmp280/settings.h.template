@@ -3,8 +3,8 @@
  * Save as settings.h
  */
 
-#ifndef __WIFI_SETTINGS_H__
-#define __WIFI_SETTINGS_H__
+#ifndef __ESPHome_SETTINGS_H__
+#define __ESPHome_SETTINGS_H__
 
 // WIFI Settings
 #define S_WIFI_SSID     "SSID"
