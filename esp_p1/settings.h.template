@@ -1,0 +1,21 @@
+/*
+ * Configuration
+ * Save as settings.h
+ */
+
+#ifndef __ESPHome_SETTINGS_H__
+#define __ESPHome_SETTINGS_H__
+
+// WIFI Settings
+#define S_WIFI_SSID     "SSID"
+#define S_WIFI_PASSWORD "SSIDPWD"         
+
+// MQTT Configuration
+#define S_MQTT_PTOPIC "your/topic"
+#define S_MQTT_CLIENT "ESP_BMP280"
+#define S_MQTT_HOST "127.0.0.2"
+#define S_MQTT_PORT 1883
+#define S_MQTT_USER ""
+#define S_MQTT_PASS ""
+
+#endif
